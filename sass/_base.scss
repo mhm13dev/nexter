@@ -1,0 +1,107 @@
+// COLOR VARIABLES
+$color-primary: #c69963;
+$color-primary-dark: #b28451;
+
+$color-secondary: #101d2c;
+
+$color-grey-light-1: #f9f7f6;
+$color-grey-light-2: #aaa;
+
+$color-grey-dark-1: #54483a;
+$color-grey-dark-2: #6d5d4b;
+
+// FONT VARIABLES
+$font-primary: "Nunito", sans-serif;
+$font-display: "Josefin Sans", sans-serif;
+
+// BREAKPOINTS
+$bp-1: 71.875em; // 1150px
+$bp-2: 63.25em; // 1012px
+$bp-3: 51.25em; // 820px
+$bp-4: 34.375em; // 550px
+
+// MEDIA QUERIES SETUP
+
+@mixin respond($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px; (10 / 16) * 100 = 62.5%
+  box-sizing: border-box;
+
+  @include respond($bp-1) {
+    font-size: 50%; // 1rem = 8px; (8 / 16) * 100 = 50%
+  }
+}
+
+body {
+  font-family: $font-primary;
+  color: $color-grey-dark-2;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
+  grid-template-columns:
+    [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr)
+    [center-start] repeat(
+      8,
+      [col-start] minmax(min-content, 14.25rem) [col-end]
+    )
+    [center-end] minmax(6rem, 1fr) [full-end];
+
+  @include respond($bp-2) {
+    grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
+    grid-template-columns:
+      [full-start] minmax(6rem, 1fr)
+      [center-start] repeat(
+        8,
+        [col-start] minmax(min-content, 14.25rem) [col-end]
+      )
+      [center-end] minmax(6rem, 1fr) [full-end];
+  }
+  @include respond($bp-3) {
+    grid-template-rows: 6rem calc(100vh - 6rem);
+  }
+}
+
+// Margin-Top
+.mt-sm {
+  margin-top: 2rem;
+}
+.mt-md {
+  margin-top: 3rem;
+}
+.mt-lg {
+  margin-top: 4rem;
+}
+.mt-hg {
+  margin-top: 5rem;
+}
+
+// Margin-Bottom
+.mb-sm {
+  margin-bottom: 2rem;
+}
+.mb-md {
+  margin-bottom: 3rem;
+}
+.mb-lg {
+  margin-bottom: 4rem;
+}
+.mb-hg {
+  margin-bottom: 5rem;
+}
